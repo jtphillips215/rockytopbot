@@ -1,5 +1,4 @@
 import praw
-# import time
 import abbrevs
 
 reddit = praw.Reddit(
