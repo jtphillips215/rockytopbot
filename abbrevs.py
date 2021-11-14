@@ -1,3 +1,7 @@
+# this file is just a list of 2021 and 2022 football opponents
+# other opponents can be added for bowl games or other sports as needed
+# just follow the formatting as below
+
 tennessee = ["[tennessee]", "[tenn]", "[ut]", "[vols]", "[volunteers]"]
 missouri = ["[missouri]", "[tigers]", "[miz]", "[mizzou]"]
 south_carolina = ["[south carolina]", "[scar]", "[uscjr]", "[gamecocks]", "[sc]"]
