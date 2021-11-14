@@ -38,16 +38,17 @@ class Team:
 
 
 def main():
+    # this section needs two changes each week. The opponent's name needs to be updated twice
     # setting the sub to parse for comments
     subreddit = reddit.subreddit("ockytop")
 
     # instances of teams
     tennessee = Team("Tennessee")
-    opponent = Team("") # opponent name here
+    opponent = Team("") # opponent name goes here between the parenthesis
 
     # setting abbreviations
     tennessee.set_abbrevs(abbrevs.tennessee)
-    opponent.set_abbrevs(abbrevs.opponent) # oppenent name from abbreviations list here 
+    opponent.set_abbrevs(abbrevs.opponent) # replace opponent name with name of abbreviations list from other file
 
     # reading thread
     read_thread(subreddit, tennessee, opponent)
@@ -60,6 +61,8 @@ def main():
 
 
 def read_thread(subreddit, tennessee, opponent):
+  
+    # this section will not need changes
     # establishing counters for picks and list to return data to main
     tennessee_counter = 0
     opponent_counter = 0
@@ -96,6 +99,7 @@ def read_thread(subreddit, tennessee, opponent):
 def calc_pick_rate(tennessee, opponent):
 
     # calculating total number of picks and the rate for tenn and opponent picks
+    # this section needs no changes
     total_picks = tennessee.get_count() + opponent.get_count()
     try:
         tenn_rate = tennessee.get_count() / total_picks
@@ -116,21 +120,24 @@ def calc_pick_rate(tennessee, opponent):
 def write_post(subreddit, tennessee, opponent):
 
     # write post writes post about picks
+    # the lines with \n are used to correctly format post for reddit
+    # only the flavor text will need changed week to week
     reply_text = "{0}: {1} picks {2:.2f}%".format(tennessee.get_name(), tennessee.get_count(), tennessee.get_rate())
     reply_text += "\n \n"
     reply_text += "{0}: {1} picks {2:.2f}%".format(opponent.get_name(), opponent.get_count(), opponent.get_rate())
     reply_text += "\n \n"
-    reply_text += ""# flavor text here
+    reply_text += ""  # flavor text goes here between the parenthesis
     reply_text += "\n \n"
     reply_text += "Bloop bloop. I'm a bot. Please message u/rockytop_dev if I'm behaving badly."
 
+    # bot will either print that it was able to do it or no post if unable to post
     for submission in subreddit.hot(limit=20):
         if "Pre-Game" in submission.title:
             if tennessee.get_count() > 0 or opponent.get_count() > 0:
                 submission.reply(reply_text)
                 print("Jobs done!")
             else:
-                print("no picks")
+                print("no post")
 
 
 if __name__ == "__main__":
